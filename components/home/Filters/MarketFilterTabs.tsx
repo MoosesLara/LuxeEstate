@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'motion/react';
 import { MarketFilterType } from '@/types/filter.types';
 import { useI18n } from '@/lib/i18n';
 
@@ -17,41 +18,36 @@ export function MarketFilterTabs({
 }: MarketFilterTabsProps) {
   const { t } = useI18n();
 
+  const tabs: { id: MarketTabType; label: string }[] = [
+    { id: 'all', label: t('market.tabAll') },
+    { id: 'sale', label: t('market.tabSale') },
+    { id: 'rent', label: t('market.tabRent') },
+  ];
+
   return (
-    <div className="flex bg-white p-1 rounded-lg shadow-sm border border-[#19322F]/5">
-      <button
-        type="button"
-        onClick={() => onTabChange('all')}
-        className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer ${
-          activeTab === 'all'
-            ? 'bg-[#19322F] text-white shadow-sm'
-            : 'text-[#5C706D] hover:text-[#19322F]'
-        }`}
-      >
-        {t('market.tabAll')}
-      </button>
-      <button
-        type="button"
-        onClick={() => onTabChange('sale')}
-        className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer ${
-          activeTab === 'sale'
-            ? 'bg-[#19322F] text-white shadow-sm'
-            : 'text-[#5C706D] hover:text-[#19322F]'
-        }`}
-      >
-        {t('market.tabSale')}
-      </button>
-      <button
-        type="button"
-        onClick={() => onTabChange('rent')}
-        className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer ${
-          activeTab === 'rent'
-            ? 'bg-[#19322F] text-white shadow-sm'
-            : 'text-[#5C706D] hover:text-[#19322F]'
-        }`}
-      >
-        {t('market.tabRent')}
-      </button>
+    <div className="flex bg-white p-1 rounded-xl shadow-sm border border-[#19322F]/5 relative">
+      {tabs.map((tab) => {
+        const isActive = activeTab === tab.id;
+        return (
+          <button
+            key={tab.id}
+            type="button"
+            onClick={() => onTabChange(tab.id)}
+            className={`relative px-4 py-1.5 rounded-lg text-sm font-medium transition-colors cursor-pointer select-none ${
+              isActive ? 'text-white' : 'text-[#5C706D] hover:text-[#19322F]'
+            }`}
+          >
+            {isActive && (
+              <motion.div
+                layoutId="activeMarketTabPill"
+                transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                className="absolute inset-0 bg-[#19322F] rounded-lg shadow-sm"
+              />
+            )}
+            <span className="relative z-10">{tab.label}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }

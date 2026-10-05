@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'motion/react';
 import { Property } from '@/types/property.types';
 import { Badge } from '@/components/ui/Badge/Badge';
 import { FavoriteButton } from '../common/FavoriteButton';
@@ -41,11 +42,16 @@ export function PropertyCard({
   const pricePeriodFormatted = property.pricePeriod === '/month' ? t('common.perMonth') : property.pricePeriod;
 
   return (
-    <Link
-      href={`/properties/${property.slug}`}
-      onClick={() => onSelect && onSelect(property)}
-      className="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-soft transition-all duration-300 group cursor-pointer h-full flex flex-col"
+    <motion.div
+      whileHover={{ y: -6 }}
+      transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+      className="h-full flex flex-col"
     >
+      <Link
+        href={`/properties/${property.slug}`}
+        onClick={() => onSelect && onSelect(property)}
+        className="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-xl transition-shadow duration-300 group cursor-pointer h-full flex flex-col"
+      >
       {/* Property Image Container */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
@@ -100,5 +106,6 @@ export function PropertyCard({
         </div>
       </div>
     </Link>
+    </motion.div>
   );
 }

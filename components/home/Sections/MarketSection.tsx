@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { motion, AnimatePresence } from 'motion/react';
 import { Property } from '@/types/property.types';
 import { MarketFilterType } from '@/types/filter.types';
 import { PropertyCard } from '@/components/properties/cards/PropertyCard';
@@ -53,7 +54,13 @@ export function MarketSection({
 
   return (
     <section>
-      <div className="flex items-end justify-between mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="flex items-end justify-between mb-8"
+      >
         <div>
           <h2 className="text-2xl font-light text-[#19322F]">
             {t('market.title')}
@@ -74,19 +81,33 @@ export function MarketSection({
             onTabChange={handleTabChange}
           />
         </div>
-      </div>
+      </motion.div>
 
       {properties.length > 0 ? (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {properties.map((property) => (
-              <PropertyCard
-                key={property.id}
-                property={property}
-                onSelect={onSelectProperty}
-                onToggleFavorite={onToggleFavorite}
-              />
-            ))}
+            <AnimatePresence mode="popLayout">
+              {properties.map((property, idx) => (
+                <motion.div
+                  key={property.id}
+                  layout
+                  initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{
+                    duration: 0.45,
+                    delay: (idx % 4) * 0.06,
+                    ease: 'easeOut',
+                  }}
+                >
+                  <PropertyCard
+                    property={property}
+                    onSelect={onSelectProperty}
+                    onToggleFavorite={onToggleFavorite}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
           <Pagination

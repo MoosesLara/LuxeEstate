@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'motion/react';
 import { Property } from '@/types/property.types';
 import { Icon } from '@/components/ui/Icon';
 import { Badge } from '@/components/ui/Badge/Badge';
@@ -34,11 +35,16 @@ export function FeaturedPropertyCard({
   const { t } = useI18n();
 
   return (
-    <Link
-      href={`/properties/${property.slug}`}
-      onClick={() => onSelect && onSelect(property)}
-      className="group relative rounded-2xl overflow-hidden shadow-soft bg-white cursor-pointer transition-all duration-300 hover:shadow-xl block"
+    <motion.div
+      whileHover={{ y: -6 }}
+      transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+      className="h-full"
     >
+      <Link
+        href={`/properties/${property.slug}`}
+        onClick={() => onSelect && onSelect(property)}
+        className="group relative rounded-2xl overflow-hidden shadow-soft bg-white cursor-pointer transition-shadow duration-300 hover:shadow-2xl block h-full"
+      >
       {/* Property Image Container */}
       <div className="aspect-[4/3] w-full overflow-hidden relative">
         <Image
@@ -98,5 +104,6 @@ export function FeaturedPropertyCard({
         </div>
       </div>
     </Link>
+    </motion.div>
   );
 }

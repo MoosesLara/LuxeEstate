@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { Icon } from '@/components/ui/Icon';
 import { useI18n } from '@/lib/i18n';
 
@@ -44,12 +45,15 @@ export function SearchBar({
         placeholder={effectivePlaceholder}
         className="block w-full pl-14 pr-28 py-4 rounded-full border-none bg-white text-[#19322F] shadow-soft placeholder-[#5C706D]/60 focus:ring-2 focus:ring-[#006655] focus:outline-none transition-all text-base md:text-lg"
       />
-      <button
+      <motion.button
         type="submit"
-        className="absolute inset-y-2 right-2 px-6 bg-[#006655] hover:bg-[#006655]/90 text-white font-medium rounded-full transition-all flex items-center justify-center shadow-lg shadow-[#006655]/20 cursor-pointer"
+        whileHover={{ scale: 1.03, backgroundColor: '#005547' }}
+        whileTap={{ scale: 0.96 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+        className="absolute inset-y-2 right-2 px-6 bg-[#006655] text-white font-medium rounded-full transition-shadow flex items-center justify-center shadow-lg shadow-[#006655]/20 cursor-pointer"
       >
         {t('hero.searchButton')}
-      </button>
+      </motion.button>
     </form>
   );
 }

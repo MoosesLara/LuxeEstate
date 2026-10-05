@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'motion/react';
 import { Property } from '@/types/property.types';
 import { FeaturedPropertyCard } from '@/components/properties/cards/FeaturedPropertyCard';
 import { Icon } from '@/components/ui/Icon';
@@ -21,7 +22,13 @@ export function FeaturedSection({
 
   return (
     <section className="mb-16">
-      <div className="flex items-end justify-between mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="flex items-end justify-between mb-8"
+      >
         <div>
           <h2 className="text-2xl font-light text-[#19322F]">
             {t('featured.title')}
@@ -30,23 +37,35 @@ export function FeaturedSection({
             {t('featured.subtitle')}
           </p>
         </div>
-        <button
+        <motion.button
           type="button"
-          className="hidden sm:flex items-center gap-1 text-sm font-medium text-[#006655] hover:opacity-70 transition-opacity cursor-pointer"
+          whileHover={{ x: 3 }}
+          className="hidden sm:flex items-center gap-1 text-sm font-medium text-[#006655] hover:opacity-80 transition-opacity cursor-pointer group"
         >
           <span>{t('featured.viewAllButton')}</span>
-          <Icon name="arrow_forward" className="text-sm" />
-        </button>
-      </div>
+          <Icon name="arrow_forward" className="text-sm transition-transform group-hover:translate-x-1" />
+        </motion.button>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {properties.map((property) => (
-          <FeaturedPropertyCard
+        {properties.map((property, idx) => (
+          <motion.div
             key={property.id}
-            property={property}
-            onSelect={onSelectProperty}
-            onToggleFavorite={onToggleFavorite}
-          />
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{
+              duration: 0.65,
+              delay: idx * 0.15,
+              ease: 'easeOut',
+            }}
+          >
+            <FeaturedPropertyCard
+              property={property}
+              onSelect={onSelectProperty}
+              onToggleFavorite={onToggleFavorite}
+            />
+          </motion.div>
         ))}
       </div>
     </section>

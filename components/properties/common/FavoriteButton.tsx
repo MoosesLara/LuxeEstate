@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Icon } from '@/components/ui/Icon';
 
 interface FavoriteButtonProps {
@@ -38,20 +39,34 @@ export function FavoriteButton({
     shape === 'rounded' ? 'rounded-lg' : 'rounded-full aspect-square';
 
   return (
-    <button
+    <motion.button
       type="button"
       onClick={handleClick}
+      whileHover={{ scale: 1.12 }}
+      whileTap={{ scale: 0.84 }}
+      transition={{ type: 'spring', stiffness: 500, damping: 22 }}
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-      className={`flex items-center justify-center transition-all duration-200 cursor-pointer shadow-sm select-none ${sizeClasses} ${shapeClasses} ${
+      className={`flex items-center justify-center transition-colors duration-200 cursor-pointer shadow-sm select-none ${sizeClasses} ${shapeClasses} ${
         isFavorite
-          ? 'bg-[#006655] text-white'
-          : 'bg-white/90 text-[#19322F] hover:bg-[#006655] hover:text-white'
+          ? 'bg-[#006655] text-white shadow-md shadow-[#006655]/30'
+          : 'bg-white/95 text-[#19322F] hover:bg-[#006655] hover:text-white backdrop-blur-sm'
       } ${className}`}
     >
-      <Icon
-        name={isFavorite ? 'favorite' : 'favorite_border'}
-        className={size === 'sm' ? 'text-lg' : 'text-xl'}
-      />
-    </button>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={isFavorite ? 'fav' : 'unfav'}
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.5, opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          className="flex items-center justify-center"
+        >
+          <Icon
+            name={isFavorite ? 'favorite' : 'favorite_border'}
+            className={size === 'sm' ? 'text-lg' : 'text-xl'}
+          />
+        </motion.span>
+      </AnimatePresence>
+    </motion.button>
   );
 }
