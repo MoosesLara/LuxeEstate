@@ -23,26 +23,35 @@ interface PaginationInfo {
 
 interface HomeScreenProps {
   initialFeatured: Property[];
-  initialMarket: Property[];
-  pagination: PaginationInfo;
-  activeFilter: MarketFilterType;
+  allMarketProperties?: Property[];
+  initialMarket?: Property[];
+  pagination?: PaginationInfo;
+  activeFilter?: MarketFilterType;
 }
+
+const MARKET_PAGE_SIZE = 8;
 
 export function HomeScreen({
   initialFeatured,
-  initialMarket,
-  pagination,
-  activeFilter,
+  allMarketProperties = [],
+  initialMarket = [],
+  pagination: defaultPagination,
+  activeFilter: defaultFilter = 'all',
 }: HomeScreenProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [activeMarketTab, setActiveMarketTab] = useState<MarketFilterType>(defaultFilter);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState<boolean>(false);
   const [modalFilters, setModalFilters] = useState<SearchFilterState>(
     INITIAL_SEARCH_FILTERS
   );
   const [filtersApplied, setFiltersApplied] = useState<boolean>(false);
 
-  // Client-side filter for featured properties
+  const fullMarketList =
+    allMarketProperties.length > 0 ? allMarketProperties : initialMarket;
+
+  // Filter featured properties
   const filteredFeatured = useMemo(() => {
     return initialFeatured.filter((prop) => {
       const matchesCategory =
@@ -54,7 +63,6 @@ export function HomeScreen({
 
       if (!matchesCategory || !matchesSearch) return false;
 
-      // When modal filters are active, apply them
       if (filtersApplied) {
         if (
           modalFilters.propertyType !== 'Any Type' &&
@@ -81,44 +89,98 @@ export function HomeScreen({
     });
   }, [initialFeatured, selectedCategory, searchQuery, filtersApplied, modalFilters]);
 
-  // Client-side filtered market properties when modal filters are applied
-  const displayedMarket = useMemo(() => {
-    if (!filtersApplied) return initialMarket;
+  // Filter full market properties by tab, category, search, and modal filters
+  const filteredMarketList = useMemo(() => {
+    let list = fullMarketList;
 
-    return initialMarket.filter((prop) => {
-      if (
-        modalFilters.propertyType !== 'Any Type' &&
-        prop.category.toLowerCase() !== modalFilters.propertyType.toLowerCase()
-      ) {
-        return false;
-      }
-      if (
-        prop.price < modalFilters.minPrice ||
-        prop.price > modalFilters.maxPrice
-      ) {
-        return false;
-      }
-      if (modalFilters.beds > 0 && prop.beds < modalFilters.beds) {
-        return false;
-      }
-      if (modalFilters.baths > 0 && prop.baths < modalFilters.baths) {
-        return false;
-      }
-      return true;
-    });
-  }, [initialMarket, filtersApplied, modalFilters]);
+    if (activeMarketTab !== 'all') {
+      list = list.filter((p) => p.type === activeMarketTab);
+    }
+
+    if (selectedCategory !== 'all') {
+      list = list.filter((p) => p.category === selectedCategory);
+    }
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      list = list.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.location.toLowerCase().includes(q)
+      );
+    }
+
+    if (filtersApplied) {
+      list = list.filter((prop) => {
+        if (
+          modalFilters.propertyType !== 'Any Type' &&
+          prop.category.toLowerCase() !==
+            modalFilters.propertyType.toLowerCase()
+        ) {
+          return false;
+        }
+        if (
+          prop.price < modalFilters.minPrice ||
+          prop.price > modalFilters.maxPrice
+        ) {
+          return false;
+        }
+        if (modalFilters.beds > 0 && prop.beds < modalFilters.beds) {
+          return false;
+        }
+        if (modalFilters.baths > 0 && prop.baths < modalFilters.baths) {
+          return false;
+        }
+        return true;
+      });
+    }
+
+    return list;
+  }, [fullMarketList, activeMarketTab, selectedCategory, searchQuery, filtersApplied, modalFilters]);
+
+  // Paginate the filtered market list
+  const totalMarketCount = filteredMarketList.length;
+  const totalPages = Math.max(1, Math.ceil(totalMarketCount / MARKET_PAGE_SIZE));
+  const safeCurrentPage = Math.min(Math.max(1, currentPage), totalPages);
+
+  const displayedMarket = useMemo(() => {
+    const from = (safeCurrentPage - 1) * MARKET_PAGE_SIZE;
+    return filteredMarketList.slice(from, from + MARKET_PAGE_SIZE);
+  }, [filteredMarketList, safeCurrentPage]);
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
+  const handleTabChange = (tab: MarketFilterType) => {
+    setActiveMarketTab(tab);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    const el = document.getElementById('market-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   const handleApplyFilters = (newFilters: SearchFilterState) => {
     setModalFilters(newFilters);
     setFiltersApplied(true);
+    setCurrentPage(1);
     if (newFilters.location && newFilters.location !== 'San Francisco, CA') {
       setSearchQuery(newFilters.location);
     }
   };
 
-  const totalResults = filtersApplied
-    ? filteredFeatured.length + displayedMarket.length
-    : 124;
+  const totalResults = filteredFeatured.length + totalMarketCount;
 
   return (
     <div className="min-h-screen bg-[#EEF6F6] text-[#19322F] font-display antialiased selection:bg-[#006655] selection:text-white">
@@ -130,8 +192,8 @@ export function HomeScreen({
         {/* Hero & Search Header */}
         <HeroSection
           selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
-          onSearch={setSearchQuery}
+          onSelectCategory={handleCategorySelect}
+          onSearch={handleSearch}
           onOpenFilters={() => setIsFilterModalOpen(true)}
         />
 
@@ -141,22 +203,22 @@ export function HomeScreen({
         )}
 
         {/* New in Market */}
-        <React.Suspense fallback={null}>
-          <MarketSection
-            properties={displayedMarket}
-            pagination={
-              filtersApplied
-                ? {
-                    total: displayedMarket.length,
-                    page: 1,
-                    totalPages: 1,
-                    pageSize: displayedMarket.length,
-                  }
-                : pagination
-            }
-            activeFilter={activeFilter}
-          />
-        </React.Suspense>
+        <div id="market-section" className="scroll-mt-24">
+          <React.Suspense fallback={null}>
+            <MarketSection
+              properties={displayedMarket}
+              pagination={{
+                total: totalMarketCount,
+                page: safeCurrentPage,
+                totalPages,
+                pageSize: MARKET_PAGE_SIZE,
+              }}
+              activeFilter={activeMarketTab}
+              onTabChange={handleTabChange}
+              onPageChange={handlePageChange}
+            />
+          </React.Suspense>
+        </div>
       </main>
 
       {/* Footer */}

@@ -21,6 +21,8 @@ interface MarketSectionProps {
   properties: Property[];
   pagination: PaginationInfo;
   activeFilter: MarketFilterType;
+  onTabChange?: (tab: MarketFilterType) => void;
+  onPageChange?: (page: number) => void;
   onSelectProperty?: (property: Property) => void;
   onToggleFavorite?: (propertyId: string, isFavorite: boolean) => void;
 }
@@ -29,6 +31,8 @@ export function MarketSection({
   properties,
   pagination,
   activeFilter,
+  onTabChange,
+  onPageChange,
   onSelectProperty,
   onToggleFavorite,
 }: MarketSectionProps) {
@@ -38,15 +42,19 @@ export function MarketSection({
   const { t } = useI18n();
 
   function handleTabChange(tab: MarketFilterType) {
-    const params = new URLSearchParams(searchParams.toString());
-    // Reset to page 1 whenever filter changes
+    if (onTabChange) {
+      onTabChange(tab);
+    }
+    const params = new URLSearchParams(searchParams?.toString() ?? '');
     params.set('page', '1');
     if (tab !== 'all') {
       params.set('type', tab);
     } else {
       params.delete('type');
     }
-    router.push(`${pathname}?${params.toString()}`);
+    if (typeof window !== 'undefined') {
+      window.history.pushState(null, '', `${pathname}?${params.toString()}`);
+    }
   }
 
   const startItem = (pagination.page - 1) * pagination.pageSize + 1;
@@ -114,6 +122,7 @@ export function MarketSection({
             page={pagination.page}
             totalPages={pagination.totalPages}
             activeFilter={activeFilter}
+            onPageChange={onPageChange}
           />
         </>
       ) : (

@@ -123,6 +123,27 @@ export class PropertyService {
   }
 
   /**
+   * Retrieves all market (non-featured) properties for static / client-side pagination.
+   */
+  static async getAllMarket(): Promise<Property[]> {
+    try {
+      const db = createServerClient();
+      const { data, error } = await db
+        .from('properties')
+        .select('*')
+        .eq('is_featured', false)
+        .order('created_at', { ascending: false });
+
+      if (error || !data || data.length === 0) {
+        return MOCK_MARKET_PROPERTIES;
+      }
+      return data.map(mapRow);
+    } catch {
+      return MOCK_MARKET_PROPERTIES;
+    }
+  }
+
+  /**
    * Retrieves a paginated list of market (non-featured) properties,
    * with an optional type filter ('all' | 'sale' | 'rent').
    */
