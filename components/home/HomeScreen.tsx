@@ -141,20 +141,22 @@ export function HomeScreen({
         )}
 
         {/* New in Market */}
-        <MarketSection
-          properties={displayedMarket}
-          pagination={
-            filtersApplied
-              ? {
-                  total: displayedMarket.length,
-                  page: 1,
-                  totalPages: 1,
-                  pageSize: displayedMarket.length,
-                }
-              : pagination
-          }
-          activeFilter={activeFilter}
-        />
+        <React.Suspense fallback={null}>
+          <MarketSection
+            properties={displayedMarket}
+            pagination={
+              filtersApplied
+                ? {
+                    total: displayedMarket.length,
+                    page: 1,
+                    totalPages: 1,
+                    pageSize: displayedMarket.length,
+                  }
+                : pagination
+            }
+            activeFilter={activeFilter}
+          />
+        </React.Suspense>
       </main>
 
       {/* Footer */}
