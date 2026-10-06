@@ -120,9 +120,9 @@ export function FilterModal({
                 type="button"
                 onClick={onClose}
                 aria-label={t('filtersModal.closeAria')}
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors text-gray-500 cursor-pointer"
+                className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 hover:bg-gray-100 transition-colors text-gray-500 hover:text-[#19322F] cursor-pointer"
               >
-                <span className="material-icons">close</span>
+                <span className="material-icons text-xl">close</span>
               </button>
             </header>
 

@@ -40,24 +40,24 @@ export function Navbar() {
             <button
               type="button"
               aria-label={t('nav.searchAria')}
-              className="text-[#19322F] hover:text-[#006655] transition-colors cursor-pointer"
+              className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 text-[#19322F] hover:text-[#006655] hover:bg-[#006655]/10 transition-colors cursor-pointer"
             >
-              <Icon name="search" className="text-xl" />
+              <Icon name="search" className="text-lg" />
             </button>
             <button
               type="button"
               aria-label={t('nav.notificationsAria')}
-              className="text-[#19322F] hover:text-[#006655] transition-colors relative cursor-pointer"
+              className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 text-[#19322F] hover:text-[#006655] hover:bg-[#006655]/10 transition-colors relative cursor-pointer"
             >
-              <Icon name="notifications_none" className="text-xl" />
-              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-[#EEF6F6]"></span>
+              <Icon name="notifications_none" className="text-lg" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-[#EEF6F6]"></span>
             </button>
             <button
               type="button"
               aria-label={t('nav.profileAria')}
               className="flex items-center gap-2 pl-2 border-l border-[#19322F]/10 ml-2 cursor-pointer"
             >
-              <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent hover:ring-[#006655] transition-all">
+              <div className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-full aspect-square overflow-hidden ring-2 ring-transparent hover:ring-[#006655] transition-all flex-shrink-0">
                 <Image
                   src={MOCK_USER.avatarUrl}
                   alt={MOCK_USER.name}
@@ -72,10 +72,10 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-[#19322F] hover:text-[#006655] p-1 cursor-pointer"
+              className="md:hidden w-9 h-9 min-w-[36px] min-h-[36px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 text-[#19322F] hover:text-[#006655] hover:bg-[#006655]/10 transition-colors cursor-pointer"
               aria-label={t('nav.openMenuAria')}
             >
-              <Icon name={mobileMenuOpen ? 'close' : 'menu'} className="text-2xl" />
+              <Icon name={mobileMenuOpen ? 'close' : 'menu'} className="text-xl" />
             </button>
           </div>
         </div>

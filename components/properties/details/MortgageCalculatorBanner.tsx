@@ -37,8 +37,8 @@ export function MortgageCalculatorBanner({ price }: MortgageCalculatorBannerProp
     <>
       <div className="bg-[#006655]/5 p-6 rounded-xl border border-[#006655]/10 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex items-start gap-4">
-          <div className="p-3 bg-white rounded-full text-[#006655] shadow-sm flex items-center justify-center">
-            <span className="material-icons text-xl">calculate</span>
+          <div className="w-12 h-12 min-w-[48px] min-h-[48px] bg-white rounded-full aspect-square text-[#006655] shadow-sm flex items-center justify-center flex-shrink-0">
+            <span className="material-icons text-2xl">calculate</span>
           </div>
           <div>
             <h3 className="font-semibold text-[#19322F]">
@@ -79,9 +79,10 @@ export function MortgageCalculatorBanner({ price }: MortgageCalculatorBannerProp
               <button
                 type="button"
                 onClick={() => setShowModal(false)}
-                className="p-1 rounded-full text-slate-400 hover:text-[#19322F] transition-colors cursor-pointer"
+                aria-label="Close calculator"
+                className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 text-slate-400 hover:text-[#19322F] hover:bg-slate-100 transition-colors cursor-pointer"
               >
-                <span className="material-icons text-xl">close</span>
+                <span className="material-icons text-lg">close</span>
               </button>
             </div>
 

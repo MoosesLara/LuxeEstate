@@ -46,7 +46,7 @@ export function FavoriteButton({
       whileTap={{ scale: 0.84 }}
       transition={{ type: 'spring', stiffness: 500, damping: 22 }}
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-      className={`flex items-center justify-center transition-colors duration-200 cursor-pointer shadow-sm select-none ${sizeClasses} ${shapeClasses} ${
+      className={`flex items-center justify-center flex-shrink-0 transition-colors duration-200 cursor-pointer shadow-sm select-none ${sizeClasses} ${shapeClasses} ${
         isFavorite
           ? 'bg-[#006655] text-white shadow-md shadow-[#006655]/30'
           : 'bg-white/95 text-[#19322F] hover:bg-[#006655] hover:text-white backdrop-blur-sm'

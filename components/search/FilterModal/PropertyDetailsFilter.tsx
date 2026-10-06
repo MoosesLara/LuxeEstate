@@ -90,7 +90,7 @@ export function PropertyDetailsFilter({
               disabled={beds <= 0}
               onClick={() => onBedsChange(Math.max(0, beds - 1))}
               aria-label="Decrease bedrooms"
-              className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-500 hover:text-[#006655] disabled:opacity-40 transition-colors cursor-pointer active:scale-95"
+              className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full aspect-square flex-shrink-0 bg-white shadow-sm flex items-center justify-center text-gray-500 hover:text-[#006655] disabled:opacity-40 transition-colors cursor-pointer active:scale-95"
             >
               <span className="material-icons text-base">remove</span>
             </button>
@@ -101,7 +101,7 @@ export function PropertyDetailsFilter({
               type="button"
               onClick={() => onBedsChange(beds + 1)}
               aria-label="Increase bedrooms"
-              className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-[#006655] hover:bg-[#006655] hover:text-white transition-colors cursor-pointer active:scale-95"
+              className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full aspect-square flex-shrink-0 bg-white shadow-sm flex items-center justify-center text-[#006655] hover:bg-[#006655] hover:text-white transition-colors cursor-pointer active:scale-95"
             >
               <span className="material-icons text-base">add</span>
             </button>
@@ -117,7 +117,7 @@ export function PropertyDetailsFilter({
               disabled={baths <= 0}
               onClick={() => onBathsChange(Math.max(0, baths - 1))}
               aria-label="Decrease bathrooms"
-              className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-500 hover:text-[#006655] disabled:opacity-40 transition-colors cursor-pointer active:scale-95"
+              className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full aspect-square flex-shrink-0 bg-white shadow-sm flex items-center justify-center text-gray-500 hover:text-[#006655] disabled:opacity-40 transition-colors cursor-pointer active:scale-95"
             >
               <span className="material-icons text-base">remove</span>
             </button>
@@ -128,7 +128,7 @@ export function PropertyDetailsFilter({
               type="button"
               onClick={() => onBathsChange(baths + 1)}
               aria-label="Increase bathrooms"
-              className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-[#006655] hover:bg-[#006655] hover:text-white transition-colors cursor-pointer active:scale-95"
+              className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full aspect-square flex-shrink-0 bg-white shadow-sm flex items-center justify-center text-[#006655] hover:bg-[#006655] hover:text-white transition-colors cursor-pointer active:scale-95"
             >
               <span className="material-icons text-base">add</span>
             </button>

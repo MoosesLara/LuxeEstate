@@ -88,21 +88,23 @@ export function AgentSidebarCard({
               <span>{agentRating}</span>
             </div>
           </div>
-          <div className="ml-auto flex gap-2">
+          <div className="ml-auto flex items-center gap-2">
             <button
               type="button"
               onClick={() => setContactModalOpen(true)}
               aria-label={t('agent.chatAria')}
-              className="p-2 rounded-full bg-[#006655]/10 text-[#006655] hover:bg-[#006655] hover:text-white transition-colors cursor-pointer"
+              title={t('agent.sendMessage')}
+              className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 bg-[#006655]/10 text-[#006655] hover:bg-[#006655] hover:text-white transition-colors cursor-pointer shadow-sm active:scale-95"
             >
-              <span className="material-icons text-sm">chat</span>
+              <span className="material-icons text-[18px]">chat</span>
             </button>
             <a
               href={`tel:${currentAgent.phone || '+15552345678'}`}
               aria-label={t('agent.callAria')}
-              className="p-2 rounded-full bg-[#006655]/10 text-[#006655] hover:bg-[#006655] hover:text-white transition-colors cursor-pointer flex items-center justify-center"
+              title={t('agent.callAgent')}
+              className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 bg-[#006655]/10 text-[#006655] hover:bg-[#006655] hover:text-white transition-colors cursor-pointer shadow-sm active:scale-95"
             >
-              <span className="material-icons text-sm">call</span>
+              <span className="material-icons text-[18px]">call</span>
             </a>
           </div>
         </div>
@@ -148,9 +150,10 @@ export function AgentSidebarCard({
                   setScheduleModalOpen(false);
                   setContactModalOpen(false);
                 }}
-                className="p-1 rounded-full text-slate-400 hover:text-[#19322F] transition-colors cursor-pointer"
+                aria-label="Close modal"
+                className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 text-slate-400 hover:text-[#19322F] hover:bg-slate-100 transition-colors cursor-pointer"
               >
-                <span className="material-icons text-xl">close</span>
+                <span className="material-icons text-lg">close</span>
               </button>
             </div>
 

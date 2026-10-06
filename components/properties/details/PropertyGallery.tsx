@@ -138,9 +138,9 @@ export function PropertyGallery({
               whileTap={{ scale: 0.92 }}
               onClick={handlePrev}
               aria-label={t('propertyDetails.previousPhotoAria')}
-              className="absolute left-3.5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 hover:bg-white text-[#19322F] backdrop-blur-md shadow-lg flex items-center justify-center transition-all opacity-85 group-hover:opacity-100 cursor-pointer"
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full aspect-square flex-shrink-0 bg-white/90 hover:bg-white text-[#19322F] backdrop-blur-md shadow-lg flex items-center justify-center transition-all opacity-85 group-hover:opacity-100 cursor-pointer"
             >
-              <span className="material-icons text-2xl">chevron_left</span>
+              <span className="material-icons text-xl">chevron_left</span>
             </motion.button>
 
             <motion.button
@@ -149,9 +149,9 @@ export function PropertyGallery({
               whileTap={{ scale: 0.92 }}
               onClick={handleNext}
               aria-label={t('propertyDetails.nextPhotoAria')}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 hover:bg-white text-[#19322F] backdrop-blur-md shadow-lg flex items-center justify-center transition-all opacity-85 group-hover:opacity-100 cursor-pointer"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full aspect-square flex-shrink-0 bg-white/90 hover:bg-white text-[#19322F] backdrop-blur-md shadow-lg flex items-center justify-center transition-all opacity-85 group-hover:opacity-100 cursor-pointer"
             >
-              <span className="material-icons text-2xl">chevron_right</span>
+              <span className="material-icons text-xl">chevron_right</span>
             </motion.button>
           </>
         )}
@@ -246,9 +246,10 @@ export function PropertyGallery({
                 whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.2)' }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setLightboxOpen(false)}
-                className="p-2.5 rounded-full bg-white/10 text-white transition-colors cursor-pointer"
+                aria-label="Close lightbox"
+                className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 bg-white/10 text-white transition-colors cursor-pointer"
               >
-                <span className="material-icons text-2xl">close</span>
+                <span className="material-icons text-xl">close</span>
               </motion.button>
             </div>
 
@@ -281,7 +282,7 @@ export function PropertyGallery({
                     whileTap={{ scale: 0.9 }}
                     onClick={handlePrev}
                     aria-label={t('propertyDetails.previousPhotoAria')}
-                    className="absolute left-3 sm:left-6 p-3.5 rounded-full bg-black/60 hover:bg-black/90 text-white transition-all cursor-pointer backdrop-blur-md shadow-xl"
+                    className="absolute left-3 sm:left-6 w-12 h-12 min-w-[48px] min-h-[48px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 bg-black/60 hover:bg-black/90 text-white transition-all cursor-pointer backdrop-blur-md shadow-xl"
                   >
                     <span className="material-icons text-2xl">chevron_left</span>
                   </motion.button>
@@ -291,7 +292,7 @@ export function PropertyGallery({
                     whileTap={{ scale: 0.9 }}
                     onClick={handleNext}
                     aria-label={t('propertyDetails.nextPhotoAria')}
-                    className="absolute right-3 sm:right-6 p-3.5 rounded-full bg-black/60 hover:bg-black/90 text-white transition-all cursor-pointer backdrop-blur-md shadow-xl"
+                    className="absolute right-3 sm:right-6 w-12 h-12 min-w-[48px] min-h-[48px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 bg-black/60 hover:bg-black/90 text-white transition-all cursor-pointer backdrop-blur-md shadow-xl"
                   >
                     <span className="material-icons text-2xl">chevron_right</span>
                   </motion.button>

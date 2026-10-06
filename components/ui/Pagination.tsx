@@ -101,7 +101,7 @@ export function Pagination({
           p === '...' ? (
             <span
               key={`ellipsis-${idx}`}
-              className="w-10 h-10 flex items-center justify-center text-sm text-[#5C706D]"
+              className="w-10 h-10 min-w-[40px] min-h-[40px] aspect-square flex-shrink-0 flex items-center justify-center text-sm text-[#5C706D]"
             >
               &hellip;
             </span>
@@ -110,7 +110,7 @@ export function Pagination({
               key={p}
               layoutId="activePageBadge"
               aria-current="page"
-              className="w-10 h-10 flex items-center justify-center text-sm font-semibold text-white bg-[#006655] rounded-lg shadow-md shadow-[#006655]/25"
+              className="w-10 h-10 min-w-[40px] min-h-[40px] aspect-square flex-shrink-0 flex items-center justify-center text-sm font-semibold text-white bg-[#006655] rounded-lg shadow-md shadow-[#006655]/25"
             >
               {p}
             </motion.span>
@@ -121,7 +121,7 @@ export function Pagination({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={(e) => handleClick(e, p as number)}
-              className="w-10 h-10 flex items-center justify-center text-sm font-medium text-[#19322F] bg-white border border-[#19322F]/10 rounded-lg hover:border-[#006655] hover:text-[#006655] transition-colors shadow-sm cursor-pointer"
+              className="w-10 h-10 min-w-[40px] min-h-[40px] aspect-square flex-shrink-0 flex items-center justify-center text-sm font-medium text-[#19322F] bg-white border border-[#19322F]/10 rounded-lg hover:border-[#006655] hover:text-[#006655] transition-colors shadow-sm cursor-pointer"
             >
               {p}
             </motion.button>

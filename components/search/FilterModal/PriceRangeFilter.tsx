@@ -84,11 +84,11 @@ export function PriceRangeFilter({
 
         {/* Visual Handles */}
         <div
-          className="absolute w-6 h-6 bg-white border-2 border-[#006655] rounded-full shadow-md pointer-events-none hover:scale-110 transition-transform -ml-3 z-10"
+          className="absolute w-6 h-6 min-w-[24px] min-h-[24px] aspect-square flex-shrink-0 bg-white border-2 border-[#006655] rounded-full shadow-md pointer-events-none hover:scale-110 transition-transform -ml-3 z-10"
           style={{ left: `calc(8px + (100% - 16px) * ${minPercent / 100})` }}
         />
         <div
-          className="absolute w-6 h-6 bg-white border-2 border-[#006655] rounded-full shadow-md pointer-events-none hover:scale-110 transition-transform -ml-3 z-10"
+          className="absolute w-6 h-6 min-w-[24px] min-h-[24px] aspect-square flex-shrink-0 bg-white border-2 border-[#006655] rounded-full shadow-md pointer-events-none hover:scale-110 transition-transform -ml-3 z-10"
           style={{ left: `calc(8px + (100% - 16px) * ${maxPercent / 100})` }}
         />
 
