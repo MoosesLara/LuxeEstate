@@ -67,7 +67,7 @@ export function AmenitiesFilter({
 
               {/* Active Dot Badge */}
               {isSelected && (
-                <span className="absolute top-2 right-2 w-2 h-2 bg-[#006655] rounded-full" />
+                <span className="absolute top-2 right-2 w-2 h-2 rounded-full aspect-square flex-shrink-0 bg-[#006655]" />
               )}
             </button>
           );

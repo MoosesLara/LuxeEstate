@@ -72,7 +72,7 @@ export function AgentSidebarCard({
 
         {/* Agent Profile Block */}
         <div className="flex items-center gap-4 mb-6">
-          <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-sm flex-shrink-0">
+          <div className="relative w-14 h-14 min-w-[56px] min-h-[56px] rounded-full aspect-square overflow-hidden border-2 border-white shadow-sm flex-shrink-0">
             <Image
               src={currentAgent.avatarUrl}
               alt={currentAgent.name}
@@ -116,7 +116,7 @@ export function AgentSidebarCard({
             onClick={() => setScheduleModalOpen(true)}
             className="w-full bg-[#006655] hover:bg-[#005544] text-white py-4 px-6 rounded-lg font-medium transition-all shadow-lg shadow-[#006655]/20 flex items-center justify-center gap-2 group cursor-pointer active:scale-[0.98]"
           >
-            <span className="material-icons text-xl group-hover:scale-110 transition-transform">
+            <span className="material-icons text-lg group-hover:scale-110 transition-transform">
               calendar_today
             </span>
             <span>{t('agent.scheduleVisitButton')}</span>
@@ -126,7 +126,7 @@ export function AgentSidebarCard({
             onClick={() => setContactModalOpen(true)}
             className="w-full bg-transparent border border-[#19322F]/10 hover:border-[#006655] text-[#19322F]/80 hover:text-[#006655] py-4 px-6 rounded-lg font-medium transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
           >
-            <span className="material-icons text-xl">mail_outline</span>
+            <span className="material-icons text-lg">mail_outline</span>
             <span>{t('agent.contactAgentButton')}</span>
           </button>
         </div>

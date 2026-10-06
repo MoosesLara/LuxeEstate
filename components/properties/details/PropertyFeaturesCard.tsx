@@ -50,15 +50,17 @@ export function PropertyFeaturesCard({
         {features.map((feature, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center justify-center p-4 bg-[#006655]/5 rounded-lg border border-[#006655]/10 hover:bg-[#006655]/10 transition-colors"
+            className="flex flex-col items-center justify-center p-5 bg-[#006655]/5 rounded-xl border border-[#006655]/10 hover:bg-[#006655]/10 transition-all group"
           >
-            <span className="material-icons text-[#006655] text-2xl mb-2">
-              {feature.icon}
-            </span>
+            <div className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 bg-white text-[#006655] shadow-sm mb-3 group-hover:scale-105 transition-transform">
+              <span className="material-icons text-xl">
+                {feature.icon}
+              </span>
+            </div>
             <span className="text-xl font-bold text-[#19322F]">
               {feature.value}
             </span>
-            <span className="text-xs uppercase tracking-wider text-[#19322F]/50 mt-1 text-center font-medium">
+            <span className="text-xs uppercase tracking-wider text-[#19322F]/60 mt-1 text-center font-medium">
               {feature.label}
             </span>
           </div>

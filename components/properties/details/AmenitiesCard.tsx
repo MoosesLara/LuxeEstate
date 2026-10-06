@@ -43,10 +43,12 @@ export function AmenitiesCard({ amenities }: AmenitiesCardProps) {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
         {list.map((amenity, idx) => (
-          <div key={idx} className="flex items-center gap-3 text-[#19322F]/70">
-            <span className="material-icons text-[#006655]/70 text-sm">
-              check_circle
-            </span>
+          <div key={idx} className="flex items-center gap-3 text-[#19322F]/80">
+            <div className="w-6 h-6 min-w-[24px] min-h-[24px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 bg-[#006655]/10 text-[#006655]">
+              <span className="material-icons text-[14px]">
+                check
+              </span>
+            </div>
             <span className="text-sm font-medium">{localizeAmenity(amenity, t)}</span>
           </div>
         ))}
