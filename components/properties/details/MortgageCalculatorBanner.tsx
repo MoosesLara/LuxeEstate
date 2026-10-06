@@ -35,8 +35,8 @@ export function MortgageCalculatorBanner({ price }: MortgageCalculatorBannerProp
 
   return (
     <>
-      <div className="bg-[#006655]/5 p-6 rounded-xl border border-[#006655]/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div className="flex items-start gap-4">
+      <div className="bg-[#006655]/5 p-5 sm:p-6 rounded-xl border border-[#006655]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 w-full">
+        <div className="flex items-start gap-3.5 sm:gap-4">
           <div className="w-12 h-12 min-w-[48px] min-h-[48px] bg-white rounded-full aspect-square text-[#006655] shadow-sm flex items-center justify-center flex-shrink-0">
             <span className="material-icons text-2xl">calculate</span>
           </div>
@@ -55,7 +55,7 @@ export function MortgageCalculatorBanner({ price }: MortgageCalculatorBannerProp
         <button
           type="button"
           onClick={() => setShowModal(true)}
-          className="whitespace-nowrap px-4 py-2 bg-white border border-[#19322F]/10 rounded-lg text-sm font-semibold hover:border-[#006655] hover:text-[#006655] transition-colors text-[#19322F] cursor-pointer shadow-sm active:scale-95"
+          className="w-full sm:w-auto text-center whitespace-nowrap px-4 py-2.5 bg-white border border-[#19322F]/10 rounded-lg text-sm font-semibold hover:border-[#006655] hover:text-[#006655] transition-colors text-[#19322F] cursor-pointer shadow-sm active:scale-95"
         >
           {t('mortgage.calculateButton')}
         </button>

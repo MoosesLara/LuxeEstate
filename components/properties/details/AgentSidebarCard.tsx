@@ -51,10 +51,10 @@ export function AgentSidebarCard({
 
   return (
     <>
-      <div className="bg-white p-6 rounded-xl shadow-sm border border-[#006655]/5">
+      <div className="bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-[#006655]/5 w-full">
         {/* Price & Address Header */}
         <div className="mb-4">
-          <h1 className="text-4xl font-display font-light text-[#19322F] mb-2 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-display font-light text-[#19322F] mb-2 tracking-tight">
             {priceFormatted}
             {displayPeriod && (
               <span className="text-xl font-normal text-[#19322F]/60 ml-1">

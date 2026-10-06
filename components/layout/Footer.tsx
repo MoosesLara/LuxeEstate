@@ -8,12 +8,12 @@ export function Footer() {
   const { t } = useI18n();
 
   return (
-    <footer className="bg-white border-t border-slate-200 mt-12 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-sm text-[#19322F]/50">
+    <footer className="bg-white border-t border-slate-200 mt-12 py-8 sm:py-12 w-full max-w-full">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+        <div className="text-sm text-[#19322F]/50 order-2 md:order-1">
           © {new Date().getFullYear()} LuxeEstate Inc. {t('footer.copyright')}
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 order-1 md:order-2">
           <Link
             href="/"
             className="text-sm text-[#19322F]/60 hover:text-[#006655] transition-colors"

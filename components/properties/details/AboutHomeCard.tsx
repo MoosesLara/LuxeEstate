@@ -22,7 +22,7 @@ export function AboutHomeCard({
   const additionalDesc = t('propertyDetails.aboutParagraph3');
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-sm border border-[#006655]/5">
+    <div className="bg-white p-5 sm:p-8 rounded-xl shadow-sm border border-[#006655]/5">
       <h2 className="text-lg font-semibold mb-4 text-[#19322F]">
         {t('propertyDetails.aboutTitle')}
       </h2>

@@ -20,7 +20,7 @@ export default async function RootLayout({
     <html lang={initialLocale} suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className="bg-[#EEF6F6] text-[#19322F] font-display antialiased selection:bg-[#006655] selection:text-white min-h-screen"
+        className="bg-[#EEF6F6] text-[#19322F] font-display antialiased selection:bg-[#006655] selection:text-white min-h-screen w-full max-w-full overflow-x-hidden"
       >
         <I18nProvider initialLocale={initialLocale}>{children}</I18nProvider>
       </body>

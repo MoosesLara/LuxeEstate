@@ -42,17 +42,17 @@ export function PropertyFeaturesCard({
   ];
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-sm border border-[#006655]/5">
-      <h2 className="text-lg font-semibold mb-6 text-[#19322F]">
+    <div className="bg-white p-5 sm:p-8 rounded-xl shadow-sm border border-[#006655]/5">
+      <h2 className="text-lg font-semibold mb-5 sm:mb-6 text-[#19322F]">
         {t('propertyDetails.featuresTitle')}
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-6">
         {features.map((feature, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center justify-center p-5 bg-[#006655]/5 rounded-xl border border-[#006655]/10 hover:bg-[#006655]/10 transition-all group"
+            className="flex flex-col items-center justify-center p-4 sm:p-5 bg-[#006655]/5 rounded-xl border border-[#006655]/10 hover:bg-[#006655]/10 transition-all group"
           >
-            <div className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 bg-white text-[#006655] shadow-sm mb-3 group-hover:scale-105 transition-transform">
+            <div className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full aspect-square flex items-center justify-center flex-shrink-0 bg-white text-[#006655] shadow-sm mb-2.5 sm:mb-3 group-hover:scale-105 transition-transform">
               <span className="material-icons text-xl">
                 {feature.icon}
               </span>

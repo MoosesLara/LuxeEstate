@@ -37,7 +37,7 @@ export function AmenitiesCard({ amenities }: AmenitiesCardProps) {
   const list = amenities && amenities.length > 0 ? amenities : DEFAULT_AMENITIES;
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-sm border border-[#006655]/5">
+    <div className="bg-white p-5 sm:p-8 rounded-xl shadow-sm border border-[#006655]/5">
       <h2 className="text-lg font-semibold mb-6 text-[#19322F]">
         {t('propertyDetails.amenitiesTitle')}
       </h2>

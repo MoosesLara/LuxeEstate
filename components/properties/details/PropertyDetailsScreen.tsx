@@ -16,13 +16,13 @@ interface PropertyDetailsScreenProps {
 
 export function PropertyDetailsScreen({ property }: PropertyDetailsScreenProps) {
   return (
-    <div className="bg-[#EEF6F6] text-[#19322F] min-h-screen selection:bg-[#006655]/20 flex flex-col justify-between">
+    <div className="bg-[#EEF6F6] text-[#19322F] min-h-screen selection:bg-[#006655]/20 flex flex-col justify-between w-full max-w-full overflow-x-hidden">
       {/* Top Navigation */}
       <Navbar />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex-1">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mb-8">
           {/* Top-Left: Gallery & Photo Strip */}
           <div className="lg:col-span-8 space-y-4">
             <PropertyGallery
@@ -35,7 +35,7 @@ export function PropertyDetailsScreen({ property }: PropertyDetailsScreenProps) 
 
           {/* Sticky Sidebar (Right 4 columns) */}
           <div className="lg:col-span-4 relative">
-            <div className="sticky top-28 space-y-6">
+            <div className="lg:sticky lg:top-28 space-y-6">
               {/* Agent and Price Card */}
               <AgentSidebarCard
                 priceFormatted={property.priceFormatted}
@@ -55,7 +55,7 @@ export function PropertyDetailsScreen({ property }: PropertyDetailsScreenProps) 
           </div>
 
           {/* Bottom-Left Details Sections */}
-          <div className="lg:col-span-8 lg:row-start-2 -mt-8 space-y-8">
+          <div className="lg:col-span-8 lg:row-start-2 lg:-mt-8 mt-0 space-y-6 sm:space-y-8">
             {/* Property Features */}
             <PropertyFeaturesCard
               area={property.area}

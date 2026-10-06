@@ -183,12 +183,12 @@ export function HomeScreen({
   const totalResults = filteredFeatured.length + totalMarketCount;
 
   return (
-    <div className="min-h-screen bg-[#EEF6F6] text-[#19322F] font-display antialiased selection:bg-[#006655] selection:text-white">
+    <div className="min-h-screen bg-[#EEF6F6] text-[#19322F] font-display antialiased selection:bg-[#006655] selection:text-white w-full max-w-full overflow-x-hidden flex flex-col justify-between">
       {/* Navigation Shell */}
       <Navbar />
 
       {/* Main Discover Layout */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 flex-1">
         {/* Hero & Search Header */}
         <HeroSection
           selectedCategory={selectedCategory}

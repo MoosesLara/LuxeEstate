@@ -37,7 +37,7 @@ export function CategoryFilters({
   };
 
   return (
-    <div className="flex items-center justify-center gap-3 overflow-x-auto hide-scroll py-2 px-4 -mx-4">
+    <div className="flex items-center justify-start sm:justify-center gap-2.5 sm:gap-3 overflow-x-auto hide-scroll py-2 px-2 sm:px-4 max-w-full w-full">
       {PROPERTY_CATEGORIES.map((cat) => {
         const isActive = selectedCategory === cat.id;
         return (
