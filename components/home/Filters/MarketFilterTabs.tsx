@@ -10,11 +10,13 @@ export type MarketTabType = MarketFilterType;
 interface MarketFilterTabsProps {
   activeTab: MarketTabType;
   onTabChange: (tab: MarketTabType) => void;
+  className?: string;
 }
 
 export function MarketFilterTabs({
   activeTab,
   onTabChange,
+  className = '',
 }: MarketFilterTabsProps) {
   const { t } = useI18n();
 
@@ -25,7 +27,7 @@ export function MarketFilterTabs({
   ];
 
   return (
-    <div className="flex bg-white p-1 rounded-xl shadow-sm border border-[#19322F]/5 relative">
+    <div className={`flex w-full sm:w-auto bg-white p-1 rounded-xl shadow-sm border border-[#19322F]/5 relative ${className}`}>
       {tabs.map((tab) => {
         const isActive = activeTab === tab.id;
         return (
@@ -33,7 +35,7 @@ export function MarketFilterTabs({
             key={tab.id}
             type="button"
             onClick={() => onTabChange(tab.id)}
-            className={`relative px-4 py-1.5 rounded-lg text-sm font-medium transition-colors cursor-pointer select-none ${
+            className={`flex-1 sm:flex-initial text-center whitespace-nowrap relative px-4 py-2 sm:py-1.5 rounded-lg text-sm font-medium transition-colors cursor-pointer select-none ${
               isActive ? 'text-white' : 'text-[#5C706D] hover:text-[#19322F]'
             }`}
           >

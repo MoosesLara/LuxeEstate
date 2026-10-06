@@ -67,9 +67,9 @@ export function MarketSection({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="flex items-end justify-between mb-8"
+        className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 mb-8 w-full"
       >
-        <div>
+        <div className="w-full sm:w-auto">
           <h2 className="text-2xl font-light text-[#19322F]">
             {t('market.title')}
           </h2>
@@ -83,10 +83,11 @@ export function MarketSection({
               : t('market.subtitleFresh')}
           </p>
         </div>
-        <div className="flex items-center">
+        <div className="w-full sm:w-auto flex items-center">
           <MarketFilterTabs
             activeTab={activeFilter}
             onTabChange={handleTabChange}
+            className="w-full sm:w-auto"
           />
         </div>
       </motion.div>
